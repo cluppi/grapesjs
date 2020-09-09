@@ -24179,6 +24179,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
   initialize: function initialize() {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var conf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    console.log('FrameWrapView@init');
     Object(underscore__WEBPACK_IMPORTED_MODULE_3__["bindAll"])(this, 'onScroll', 'frameLoaded', 'updateOffset', 'remove', 'startDrag');
     var model = this.model;
 
@@ -24256,6 +24257,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     frame.model._emitUpdated();
   }),
   updatePos: function updatePos(md) {
+    console.log('FrameWrapView@updatePos');
     var model = this.model,
         el = this.el;
     var _model$attributes2 = model.attributes,
@@ -24276,6 +24278,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
    * @private
    */
   updateDim: function updateDim() {
+    console.log('FrameWrapView@updateDim');
     var em = this.em,
         el = this.el,
         $el = this.$el,
@@ -24294,7 +24297,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     this.frame.rect = 0;
     $el.addClass(classAnim);
     style.width = Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNumber"])(newW) ? "".concat(newW).concat(un) : newW;
-    style.height = Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNumber"])(newH) ? "".concat(newH).concat(un) : newH; // Set width and height from DOM (should be done only once)
+    style.height = Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNumber"])(newH) ? "".concat(newH).concat(un) : newH;
+    console.log('FrameWrapView@updateDim', style); // Set width and height from DOM (should be done only once)
 
     if (Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNull"])(width) || Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNull"])(height)) {
       var newDims = _objectSpread({}, !width ? {
@@ -39055,7 +39059,7 @@ var defaultConfig = {
   editors: editors,
   plugins: plugins,
   // Will be replaced on build
-  version: '0.16.25',
+  version: '0.16.27',
 
   /**
    * Initialize the editor with passed options
@@ -39074,7 +39078,7 @@ var defaultConfig = {
    */
   init: function init() {
     var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    console.log('cluppi/grapesjs');
+    console.log('cluppi/grapesjs 2');
     var els = config.container;
     if (!els) throw new Error("'container' is required");
     config = _objectSpread({}, defaultConfig, {}, config, {

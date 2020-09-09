@@ -45,7 +45,7 @@ export default {
    * })
    */
   init(config = {}) {
-    console.log('cluppi/grapesjs');
+    console.log('cluppi/grapesjs 2');
     const els = config.container;
     if (!els) throw new Error("'container' is required");
     config = { ...defaultConfig, ...config, grapesjs: this };

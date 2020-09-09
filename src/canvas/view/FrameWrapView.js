@@ -11,6 +11,7 @@ export default Backbone.View.extend({
   },
 
   initialize(opts = {}, conf = {}) {
+    console.log('FrameWrapView@init');
     bindAll(
       this,
       'onScroll',
@@ -82,6 +83,7 @@ export default Backbone.View.extend({
   }),
 
   updatePos(md) {
+    console.log('FrameWrapView@updatePos');
     const { model, el } = this;
     const { x, y } = model.attributes;
     const { style } = el;
@@ -100,6 +102,7 @@ export default Backbone.View.extend({
    * @private
    */
   updateDim() {
+    console.log('FrameWrapView@updateDim');
     const { em, el, $el, model, classAnim } = this;
     const { width, height } = model.attributes;
     const { style } = el;
@@ -113,6 +116,7 @@ export default Backbone.View.extend({
     $el.addClass(classAnim);
     style.width = isNumber(newW) ? `${newW}${un}` : newW;
     style.height = isNumber(newH) ? `${newH}${un}` : newH;
+    console.log('FrameWrapView@updateDim', style);
 
     // Set width and height from DOM (should be done only once)
     if (isNull(width) || isNull(height)) {
