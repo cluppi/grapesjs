@@ -24278,7 +24278,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
    * @private
    */
   updateDim: function updateDim() {
-    console.log('FrameWrapView@updateDim');
+    console.log('FrameWrapView@updateDim', this);
     var em = this.em,
         el = this.el,
         $el = this.$el,
@@ -24298,7 +24298,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     $el.addClass(classAnim);
     style.width = Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNumber"])(newW) ? "".concat(newW).concat(un) : newW;
     style.height = Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNumber"])(newH) ? "".concat(newH).concat(un) : newH;
-    console.log('FrameWrapView@updateDim', style); // Set width and height from DOM (should be done only once)
+    console.log('FrameWrapView@updateDim', el); // Set width and height from DOM (should be done only once)
 
     if (Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNull"])(width) || Object(underscore__WEBPACK_IMPORTED_MODULE_3__["isNull"])(height)) {
       var newDims = _objectSpread({}, !width ? {
@@ -39059,7 +39059,7 @@ var defaultConfig = {
   editors: editors,
   plugins: plugins,
   // Will be replaced on build
-  version: '0.16.27',
+  version: '0.16.28',
 
   /**
    * Initialize the editor with passed options

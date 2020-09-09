@@ -102,7 +102,7 @@ export default Backbone.View.extend({
    * @private
    */
   updateDim() {
-    console.log('FrameWrapView@updateDim');
+    console.log('FrameWrapView@updateDim', this);
     const { em, el, $el, model, classAnim } = this;
     const { width, height } = model.attributes;
     const { style } = el;
@@ -116,7 +116,7 @@ export default Backbone.View.extend({
     $el.addClass(classAnim);
     style.width = isNumber(newW) ? `${newW}${un}` : newW;
     style.height = isNumber(newH) ? `${newH}${un}` : newH;
-    console.log('FrameWrapView@updateDim', style);
+    console.log('FrameWrapView@updateDim', el);
 
     // Set width and height from DOM (should be done only once)
     if (isNull(width) || isNull(height)) {
