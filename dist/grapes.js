@@ -25280,17 +25280,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
      * @private
      */
     init: function init() {
+      var _this = this;
+
       var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       c = _objectSpread({}, _config_config__WEBPACK_IMPORTED_MODULE_4__["default"], {}, config);
       em = c.em;
       var ppfx = c.pStylePrefix;
       if (ppfx) c.stylePrefix = ppfx + c.stylePrefix; // Load commands passed via configuration
 
-      for (var k in c.defaults) {
+      Object.keys(c.defaults).forEach(function (k) {
         var obj = c.defaults[k];
-        if (obj.id) this.add(obj.id, obj);
-      }
-
+        if (obj.id) _this.add(obj.id, obj);
+      });
       defaultCommands['tlb-delete'] = {
         run: function run(ed) {
           return ed.runCommand('core:component-delete');
@@ -33894,12 +33895,19 @@ var Component;
     var _this2 = this;
 
     var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+    // Removing a parent component can cause this function
+    // to be called with an already removed child element
+    if (!removed) {
+      return;
+    }
+
     var domc = this.domc,
         em = this.em;
     var allByID = domc ? domc.allById() : {};
 
     if (!opts.temporary) {
-      // Remove the component from the gloabl list
+      // Remove the component from the global list
       var id = removed.getId();
       var sels = em.get('SelectorManager').getAll();
       var rules = em.get('CssComposer').getAll();
@@ -39047,7 +39055,7 @@ var defaultConfig = {
   editors: editors,
   plugins: plugins,
   // Will be replaced on build
-  version: '0.16.22',
+  version: '0.16.24',
 
   /**
    * Initialize the editor with passed options
@@ -39066,6 +39074,7 @@ var defaultConfig = {
    */
   init: function init() {
     var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    console.log('cluppi/grapesjs');
     var els = config.container;
     if (!els) throw new Error("'container' is required");
     config = _objectSpread({}, defaultConfig, {}, config, {
@@ -45410,28 +45419,28 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
      *                            passed entity
      *@example
      * styleManager.addType('my-custom-prop', {
-        create({ props, change }) {
-          const el = document.createElement('div');
-          el.innerHTML = '<input type="range" class="my-input" min="10" max="50"/>';
-          const inputEl = el.querySelector('.my-input');
-          inputEl.addEventListener('change', event => change({ event })); // change will trigger the emit
-          inputEl.addEventListener('input', event => change({ event, complete: false }));
-          return el;
-        },
-         emit({ props, updateStyle }, { event, complete }) {
-          const { value } = event.target;
-          const valueRes = value + 'px';
-          // Pass a string value for the exact CSS property or an object containing multiple properties
-          // eg. updateStyle({ [props.property]: valueRes, color: 'red' });
-          updateStyle(valueRes, { complete });
-        },
-         update({ value, el }) {
-          el.querySelector('.my-input').value = parseInt(value, 10);
-        },
-         destroy() {
-          // In order to prevent memory leaks, use this method to clean, eventually, created instances, global event listeners, etc.
-        }
-      })
+     *    create({ props, change }) {
+     *      const el = document.createElement('div');
+     *      el.innerHTML = '<input type="range" class="my-input" min="10" max="50"/>';
+     *      const inputEl = el.querySelector('.my-input');
+     *      inputEl.addEventListener('change', event => change({ event })); // change will trigger the emit
+     *      inputEl.addEventListener('input', event => change({ event, complete: false }));
+     *      return el;
+     *    },
+     *    emit({ props, updateStyle }, { event, complete }) {
+     *      const { value } = event.target;
+     *      const valueRes = value + 'px';
+     *      // Pass a string value for the exact CSS property or an object containing multiple properties
+     *      // eg. updateStyle({ [props.property]: valueRes, color: 'red' });
+     *      updateStyle(valueRes, { complete });
+     *    },
+     *    update({ value, el }) {
+     *      el.querySelector('.my-input').value = parseInt(value, 10);
+     *    },
+     *    destroy() {
+     *      // In order to prevent memory leaks, use this method to clean, eventually, created instances, global event listeners, etc.
+     *    }
+     *})
      */
     addType: function addType(id, definition) {
       properties.addType(id, definition);
