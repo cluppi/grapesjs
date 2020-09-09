@@ -39055,7 +39055,7 @@ var defaultConfig = {
   editors: editors,
   plugins: plugins,
   // Will be replaced on build
-  version: '0.16.24',
+  version: '0.16.25',
 
   /**
    * Initialize the editor with passed options
